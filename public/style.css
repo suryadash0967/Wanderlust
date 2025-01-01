@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.container{
+    margin-top: 1.5rem;
+    flex: 1;
+    min-height: 76vh;
+    width: 100% !important;
+}
+
+.all-listings-wrapper a{
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.all-listings-wrapper figcaption a{
+    text-decoration: none;
+    color: #000;
+}
+
+.all-listings-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.all-listings-wrapper img{
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+}
+
+.all-listings-wrapper button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: black;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.navbar-wrapper{
+    display: flex;
+    gap: 1rem;
+}
+
+.create-new-wrapper input,
+.create-new-wrapper textarea {
+    border-radius: 10px;
+    border: 1px solid #000;
+    outline: none;
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+.navbar-brand i{
+    font-size: 22px;
+    color: red;
+}
+.navbar{
+    height: 5rem;
+}
+
+.nav-link{
+    color: #222 !important;
+}
+
+.footer-wrapper {
+    background-color: #f7f7f7;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e0e0e0;
+    height: min-content;
+    width: 100%;
+    margin-top: 2rem;
+}
+.footer-left, .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.footer-left a, .footer-right a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+}
+.footer-right a:hover {
+    text-decoration: underline;
+}
+.footer-left span, .footer-right span {
+    font-size: 14px;
+    color: #555;
+}
+.footer-right .social-icons a {
+    font-size: 18px;
+}
+
+
+
+.all-listings-wrapper a{
+    color: #000;
+    text-decoration: none;
+    
+}
+/* Cards */
+.all-listings-wrapper .card {
+    height: fit-content !important;
+    margin: 1rem 0;
+    border: none !important;
+    transition: all 0.2s ease-in-out;
+}
+.all-listings-wrapper .card:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.all-listings-wrapper .card-body{
+    border: none !important;
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 0rem !important;
+}
+
+.all-listings-wrapper .card-body span {
+    font-size: 14px;
+    font-weight: 600;
+}
+.all-listings-wrapper .card-body p{
+    padding: 0;
+    margin: 0;
+}
+
+/* NEW */
+.create-new-wrapper label {
+    font-weight: bold;
+    margin: 0 !important;
+    margin-top: .5rem;
+}
+
+.price-location {
+    display: flex;
+    gap: .5rem;
+    width: 100%;
+}
+
+.price-location div{
+    width: 100%;
+}
+
+.price-location label{
+    margin-top: .5rem;
+    width: 100%;
+}
+
+.submit-button{
+    background-color: black; color: #fff; padding: 10px; border-radius: 10px; outline: none; border: none; text-decoration: none;
+}
+
+/* Listing Details */
+
+.listing-details-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.listing-details-wrapper img {
+    width: 600px;
+    height: 430px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 15px;
+}
+
+.listing-details-wrapper ul{
+    width: 45%;
+}
+
+.reviews-wrapper{
+    width: 100%;
+}
+
+.reviews-input {
+    border: 1px solid #afafaf;
+    border-radius: 15px;
+    padding: 1.2rem;
+    margin-top: 2rem;
+}
+
+.reviews-wrapper input{
+    width: 30%;
+}
+
+.input-group-text {
+    background-color: #fff !important;
+}
+.all-reviews .card{
+    width: 47%;
+    /* margin: 20px 20px 20px 0; */
+    /* margin: 20px; */
+}
+
+.all-reviews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Target the scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    border-radius: 10px;
+}
+
+/* Style the scrollbar track (background) */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* Style the scrollbar thumb (draggable part) */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+/* Hover effect for the scrollbar thumb */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Firefox-specific styling */
+html {
+    scrollbar-color: #888 #f1f1f1;
+    scrollbar-width: thin;
+}

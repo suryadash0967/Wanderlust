@@ -1,0 +1,39 @@
+<% layout("layouts/boilerplate") %>
+<body>
+    <h2>Create New Listings</h2>
+    <form action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate method="post">
+        <div>
+            <label for="title" class="form-label">Title</label>
+            <input class="form-control" name="listing[title]" type="text" value="<%= listing.title %>" required><br>
+            <div class="valid-feedback">Title looks good!</div>
+        </div>
+        <div>
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" name="listing[description]" type="text" required><%= listing.description %></textarea><br>
+            <div class="invalid-feedback">Please enter a short description!</div>
+        </div>
+        <div>
+            <label for="image" class="form-label">Image Link</label>
+            <input class="form-control" name="listing[image]" type="url" value="<%= listing.image %>">
+        </div>
+        <div class="price-location">
+            <div>
+                <label for="price" class="form-label">Price</label>
+                <input class="form-control" name="listing[price]" value="<%= listing.price %>" required><br>
+                <div class="invalid-feedback">Price should be valid!</div>
+            </div>
+            <div>
+                <label for="location" class="form-label">Location</label>
+                <input class="form-control" name="listing[location]" type="text" value="<%= listing.location %>" required>
+                <div class="invalid-feedback">Location should be valid!</div>
+            </div>
+        </div>
+        <div>
+            <label for="country" class="form-label">Country</label>
+            <input class="form-control" name="listing[country]" type="text" value="<%= listing.country %>" required><br>
+            <div class="invalid-feedback">Country name should be valid!</div>
+        </div>
+        <button class="submit-button" style="background-color: red;">Submit</button>
+
+    </form>
+</body>

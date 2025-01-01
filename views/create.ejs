@@ -1,0 +1,45 @@
+<% layout("layouts/boilerplate") %>
+
+<body>
+    <h2>Create New Listing</h2>
+    <form class="create-new-wrapper needs-validation" novalidate action="/listings" method="post">
+        <div>
+            <label for="title" class="form-label">Title</label>
+            <input name="listing[title]" type="text" class="form-control" placeholder="enter title" required>
+            <div class="valid-feedback">Title looks good!</div>
+        </div>
+        <br>
+        <div>
+            <label for="description" class="form-label">Description</label>
+            <textarea name="listing[description]" type="text" class="form-control" placeholder="enter description" required></textarea>
+            <div class="invalid-feedback">Please enter a short description!</div>
+        </div>
+        <br>
+        <div>
+            <label for="image" class="form-label">Image Link</label>
+            <input name="listing[image]" type="url" class="form-control" placeholder="enter image URL"><br>
+        </div>
+        <div class="price-location">
+            <div>
+                <label for="price" class="form-label">Price</label>
+                <input name="listing[price]" class="form-control" placeholder="enter price" required>
+                <div class="invalid-feedback">Price should be valid!</div>
+            </div>
+            <div>
+                <label for="location" class="form-label">Location</label>
+                <input name="listing[location]" type="text" class="form-control" placeholder="enter location" required>
+                <div class="invalid-feedback">Location should be valid!</div>
+            </div>
+        </div>
+        <br>
+        <div>
+            <label for="country" class="form-label">Country</label>
+            <input name="listing[country]" type="text" class="form-control" placeholder="enter country" required>
+            <div class="invalid-feedback">Country name should be valid!</div>
+        </div>
+        <br>
+        <button
+            style="border: none; outline: none; background-color: black; color: #fff; padding: 6px 10px; border-radius: 10px; text-decoration: none;">Submit</button>
+    </form>
+    </div>
+</body>
