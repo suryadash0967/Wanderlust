@@ -3,84 +3,94 @@
 const express = require("express");
 const router = express.Router({mergeParams: true});
 const WrapAsync = require("../utils/WrapAsync.js");
-const ExpressError = require("../utils/ExpressError.js");
-const {listingSchema} = require("../schema.js");
 const Listing = require("../model/listing.js");
+const {isLoggedIn, isOwner, validateListing, validateUUID} = require("../middlewares.js");
 
 
-
-
-
-const validateListing = (req, res, next) => {
-    let {error} = listingSchema.validate(req.body);
-    if(error) {
-        let errMsg = error.details.map(el => el.message).join(","); // joins all error messages
-        throw new ExpressError(400, errMsg);
-    } else {
-        next();
-    }
-}
-
-const validateUUID = (req, res, next) => {
-    const { id } = req.params;
-    const uuidRegex = /^[0-9a-fA-F]{24}$/; // Adjust regex for MongoDB ObjectId if necessary
-    if (!uuidRegex.test(id)) {
-        return next(new ExpressError(404, "Page not found!"));
-    }
-    next();
-};
 
 
 
 router.get("/", WrapAsync(async (req, res) => {
     let allListings = await Listing.find();
-    res.render("listings.ejs", {allListings});
+    res.render("listings/listings.ejs", {allListings});
 }))
 
-router.get("/new", WrapAsync(async (req, res) => {
-    res.render("create.ejs");
+router.get("/new",
+    isLoggedIn,
+    WrapAsync(async (req, res) => {
+        res.render("listings/create.ejs");
 }))
 
 router.get("/:id",
     validateUUID,
     WrapAsync(async (req, res) => {
     let {id} = req.params;
-    let listing = await Listing.findById(id).populate("reviews");
+    let listing = await Listing.findById(id)
+    .populate({
+        path: "reviews",
+        populate: {
+            path: "author",
+        },
+    })
+    .populate("owner");
+
+
     if(!listing) {
-        throw new ExpressError(404, "Page not found");
+        req.flash("error", "Listing you requested does not exist!");
+        res.redirect("/listings");
     }
-    res.render("show.ejs", {listing});
+    res.render("listings/show.ejs", {listing});
 }))
 
-router.post("/",
+router.post(
+    "/",
+    isLoggedIn,
     validateListing,
     WrapAsync(async (req, res, next) => {
     let listing = req.body.listing;
     let newListing = new Listing(listing);
+    newListing.owner = req.user._id;
     await newListing.save();
+
+    req.flash("success", "New Listing Created!");
     res.redirect("/listings");
 }))
 
-router.get("/:id/edit", WrapAsync(async (req, res) => {
+router.get("/:id/edit",
+    isLoggedIn,
+    isOwner,
+    WrapAsync(async (req, res) => {
     let {id} = req.params;
     let listing = await Listing.findById(id);
-    res.render("edit.ejs", {listing});
+    if(!listing) {
+        req.flash("error", "Listing you requested does not exist!");
+    }
+    res.render("listings/edit.ejs", {listing});
 }))
 
-router.put("/:id",
+router.put(
+    "/:id",
+    isLoggedIn,
+    isOwner,
     validateListing,
     WrapAsync(async (req, res) => {
     let {id} = req.params;
     let listing = req.body.listing;
     await Listing.findByIdAndUpdate(id, listing);
+
+    req.flash("success", "New Listing Updated!");
     res.redirect(`/listings/${id}`);
 }))
 
 router.delete("/:id",
+    isLoggedIn,
+    isOwner,
     validateUUID,
     WrapAsync(async (req, res) => {
     let {id} = req.params;
     await Listing.findByIdAndDelete(id);
+    
+    req.flash("success", "Listing Deleted!");
     res.redirect("/listings");
 }))
 

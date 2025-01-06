@@ -5,7 +5,11 @@ const app = express();
 const port = 5050;
 const path = require("path");
 const ExpressError = require("./utils/ExpressError.js");
-
+const session = require("express-session");
+const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./model/user.js");
 
 app.set("view engine", "ejs");
 app.engine('ejs', ejsMate);
@@ -15,18 +19,55 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
+
+const sessionOptions = {
+    secret: "mysupersecretcode",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 1 week in milliseconds
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+    }
+}
+
+
 app.listen(port, () => console.log(`listening on port ${port}`));
 
 app.get("/", (req, res) => {
     res.redirect("/listings");
 })
 
-const listings = require("./routes/listing.js");
-const reviews = require("./routes/reviews.js");
 
-app.use("/listings", listings);
-app.use("/listings/:id/reviews", reviews);
 
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    res.locals.currUser = req.user;
+    next();
+})
+
+
+
+const listingsRouter = require("./routes/listing.js");
+const reviewsRouter = require("./routes/reviews.js");
+const signupRouter = require("./routes/user.js");
+
+app.use("/listings", listingsRouter);
+app.use("/listings/:id/reviews", reviewsRouter);
+app.use("/", signupRouter);
 
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page not found!"));
@@ -38,3 +79,4 @@ app.use((err, req, res, next) => {
     let { status = 500, message} = err; 
     res.status(status).render("error.ejs", {err});
 })
+

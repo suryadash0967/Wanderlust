@@ -1,7 +1,7 @@
 <% layout("layouts/boilerplate") %>
 <body>
     <h2>Create New Listings</h2>
-    <form action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate method="post">
+    <form action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation edit-wrapper" novalidate method="post">
         <div>
             <label for="title" class="form-label">Title</label>
             <input class="form-control" name="listing[title]" type="text" value="<%= listing.title %>" required><br>
@@ -15,6 +15,7 @@
         <div>
             <label for="image" class="form-label">Image Link</label>
             <input class="form-control" name="listing[image]" type="url" value="<%= listing.image %>">
+            <br>
         </div>
         <div class="price-location">
             <div>
