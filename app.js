@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV != "production") {
+    require('dotenv').config(); 
+}
 const express = require("express");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
@@ -10,6 +13,8 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./model/user.js");
+const multer = require("multer");
+
 
 app.set("view engine", "ejs");
 app.engine('ejs', ejsMate);

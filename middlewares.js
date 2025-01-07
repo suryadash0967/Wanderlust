@@ -1,8 +1,7 @@
 const Listing = require("./model/listing");
 const Review = require("./model/review.js");
 const ExpressError = require("./utils/ExpressError.js");
-const { listingSchema } = require("./schema.js");
-const { reviewSchema } = require("./schema.js");
+const { listingSchema, reviewSchema } = require("./schema.js");
 
 module.exports.validateUUID = (req, res, next) => {
     const { id } = req.params;
@@ -13,10 +12,31 @@ module.exports.validateUUID = (req, res, next) => {
     next();
 };
 
+module.exports.validateListing = (req, res, next) => {
+    let {error} = listingSchema.validate(req.body);
+    if(error) {
+        let errMsg = error.details.map(el => el.message).join(","); // joins all error messages
+        throw new ExpressError(400, errMsg);
+    } else {
+        next();
+    }
+}
+
+module.exports.validateReview = (req, res, next) => {
+    let {error} = reviewSchema.validate(req.body);
+    if(error) {
+        let errMsg = error.details.map(el => el.message).join(","); // joins all error messages
+        throw new ExpressError(400, errMsg);
+    } else {
+        next();
+    }
+}
+
 module.exports.isLoggedIn = (req, res, next) => {
     if(!req.isAuthenticated()) {
         req.session.redirectUrl = req.originalUrl;
-        // But req.session.redirectUrl will be reset by passport. So we'll save the value in res's locals using a middleware below.
+        // But req.session.redirectUrl will be reset by passport.
+        // So we'll save the value in res's locals using a middleware below.
         // called in post request for "/login"
         req.flash("error", "You must be logged in first");
         return res.redirect("/login");
@@ -39,26 +59,6 @@ module.exports.isOwner = async (req, res, next) => {
         return res.redirect(`/listings/${id}`);
     }
     next();
-}
-
-module.exports.validateListing = (req, res, next) => {
-    let {error} = listingSchema.validate(req.body);
-    if(error) {
-        let errMsg = error.details.map(el => el.message).join(","); // joins all error messages
-        throw new ExpressError(400, errMsg);
-    } else {
-        next();
-    }
-}
-
-module.exports.validateReview = (req, res, next) => {
-    let {error} = reviewSchema.validate(req.body);
-    if(error) {
-        let errMsg = error.details.map(el => el.message).join(","); // joins all error messages
-        throw new ExpressError(400, errMsg);
-    } else {
-        next();
-    }
 }
 
 module.exports.isReviewAuthor = async (req, res, next) => {
