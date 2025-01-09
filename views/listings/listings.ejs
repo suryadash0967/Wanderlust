@@ -2,18 +2,20 @@
 <body>
     <div class="all-listings-wrapper">
         <% for(let listing of allListings) { %>
-          <a href="/listings/<%= listing._id %>">
-            <div class="card" style="width: min-content; border: none;">
-              <img src="<%= listing.image.url %>" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h6 class="card-title"><%= listing.title %></h6>
-                <div style="display: flex; flex-direction: column;">
-                  <p>&#8377; <%= listing.price %>/night</p>
-                  <p><%= listing.location %>, <%= listing.country %></p>
+          <div data-aos="zoom-out-up">
+            <a href="/listings/<%= listing._id %>">
+              <div class="card" style="width: min-content; border: none;">
+                <img src="<%= listing.image.url %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h6 class="card-title"><%= listing.title %></h6>
+                  <div style="display: flex; flex-direction: column;">
+                    <p>&#8377; <%= listing.price %>/night</p>
+                    <p><%= listing.location %>, <%= listing.country %></p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
         <% } %>
       </div>
 </body>
