@@ -135,6 +135,7 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    margin-right: 0.5rem;
 }
 
 .hammy span {
@@ -244,13 +245,22 @@ body {
     margin: 10px 0px;
 }
 
+.main-page-hr {
+    height: 3px;
+    width: 90%;
+    margin: auto;
+    margin-top: 2rem;
+    background-color: grey;
+    border-radius: 10px;
+}
+
 .footer-wrapper {
-    background-color: #f7f7f7;
+    background-color: #ffffff;
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    border-top: 1px solid #e0e0e0;
+    flex-direction: column;
     height: min-content;
     width: 100%;
     margin-top: 2rem;
@@ -259,7 +269,7 @@ body {
 .footer-left,
 .footer-right {
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 15px;
 }
 
@@ -287,6 +297,9 @@ body {
 
 @media (max-width: 768px) {
     .footer-left {
+        flex-direction: column;
+    }
+    .footer-right {
         flex-direction: column;
     }
 }
@@ -428,6 +441,15 @@ body {
     margin-bottom: 1rem;
 }
 
+.details-part-wrapper {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 1.5rem;
+}
+
 @media (max-width: 768px) {
     .listing-details-wrapper .image-div img {
         height: 240px;
@@ -460,17 +482,6 @@ body {
     .all-reviews .card,
     .all-reviews .card-body{
         width: 100% !important;
-    }
-}
-
-@media (max-width: 930px) {
-    .details-part-wrapper {
-        margin: 1rem 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: start;
-        gap: 1.5rem;
     }
 }
 
@@ -539,6 +550,12 @@ body {
     gap: 10px;
 }
 
+@media (max-width: 768px) {
+    .reviews-input h4 {
+        font-size: 20px;
+    }
+}
+
 .starability-slot {
     min-height: 45px !important;
 }
@@ -554,6 +571,23 @@ body {
 .signup-wrapper form {
     width: 35%;
 }
+
+
+
+@media (max-width: 768px) {
+    .signup-wrapper form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .signup-wrapper form div {
+        width: 73%;
+    }
+}
+
+
 
 .navbar-wrapper {
     display: flex;
