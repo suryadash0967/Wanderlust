@@ -50,6 +50,12 @@ module.exports.saveRedirectUrl = (req, res, next) => {
     }
     next();
 }
+module.exports.saveListingImage = (req, res, next) => {
+    if(req.session.listingImage) {
+        res.locals.listingImage = req.session.listingImage;
+    }
+    next();
+}
 
 module.exports.isOwner = async (req, res, next) => {
     let {id} = req.params;

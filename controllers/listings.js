@@ -28,8 +28,6 @@ module.exports.showListing = async (req, res) => {
 module.exports.createNewListing = async (req, res, next) => {
     let url = req.file.path;
     let filename = req.file.filename;
-    console.log(url)
-    console.log(filename)
     let listing = req.body.listing;
     let newListing = new Listing(listing);
     newListing.owner = req.user._id;
@@ -43,6 +41,7 @@ module.exports.createNewListing = async (req, res, next) => {
 module.exports.renderEditForm = async (req, res) => {
     let {id} = req.params;
     let listing = await Listing.findById(id);
+    req.session.listingImage = listing.image;
     if(!listing) {
         req.flash("error", "Listing you requested does not exist!");
     }
@@ -52,7 +51,14 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateListing = async (req, res) => {
     let {id} = req.params;
     let listing = req.body.listing;
-    await Listing.findByIdAndUpdate(id, listing);
+    let updatedListing = await Listing.findByIdAndUpdate(id, listing);
+
+    if(req.file) {
+        let url = req.file.path;
+        let filename = req.file.filename;
+        updatedListing.image = {url, filename};
+        await updatedListing.save();
+    }
 
     req.flash("success", "New Listing Updated!");
     res.redirect(`/listings/${id}`);
@@ -64,6 +70,30 @@ module.exports.deleteListing = async (req, res) => {
     
     req.flash("success", "Listing Deleted!");
     res.redirect("/listings");
+}
+
+module.exports.renderShortlistedPage = async (req, res) => {
+    let { q } = req.query;
+
+    if (!q || q.trim() === "") {
+        req.flash("error", "Please provide a valid search query.");
+        return res.redirect("/listings");
+    }
+
+    try {
+        const listings = await Listing.find();
+        const filteredListings = listings.filter((listing) =>
+            listing.title.toLowerCase().includes(q.toLowerCase()) || 
+            listing.country.toLowerCase().includes(q.toLowerCase()) || 
+            listing.location.toLowerCase().includes(q.toLowerCase())
+        );
+
+        return res.render("searchResults.ejs", { filteredListings, q});
+    } catch (err) {
+        console.error(err);
+        req.flash("error", "Something went wrong. Please try again.");
+        res.redirect("/listings");
+    }
 }
 
 

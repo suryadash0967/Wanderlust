@@ -11,42 +11,49 @@ const upload = multer({ storage }); // multer stores our data in cloudinary
 router.route("/")
 .get(WrapAsync(listingControllers.index))
 .post(
-    isLoggedIn, 
+    isLoggedIn,
     upload.single('listing[image]'),
     validateListing,
     WrapAsync(listingControllers.createNewListing)
 );
 
 
-router.get("/new", 
-    isLoggedIn, 
+router.get("/new",
+    isLoggedIn,
     WrapAsync(listingControllers.renderNewForm)
+);
+
+router.get("/search",
+    WrapAsync(listingControllers.renderShortlistedPage)
 );
 
 
 router.route("/:id")
 .get(
-    validateUUID, 
+    validateUUID,
     WrapAsync(listingControllers.showListing)
 )
 .put(
-    isLoggedIn, 
-    isOwner, 
+    isLoggedIn,
+    isOwner,
+    upload.single('listing[image]'),
     validateListing, 
     WrapAsync(listingControllers.updateListing)
 )
 .delete(
-    isLoggedIn, 
-    isOwner, 
-    validateUUID, 
+    isLoggedIn,
+    isOwner,
+    validateUUID,
     WrapAsync(listingControllers.deleteListing)
 );
 
-router.get("/:id/edit", 
-    isLoggedIn, 
-    isOwner, 
+router.get("/:id/edit",
+    isLoggedIn,
+    isOwner,
     WrapAsync(listingControllers.renderEditForm)
 );
+
+
 
 
 module.exports = router;

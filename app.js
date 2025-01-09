@@ -9,11 +9,12 @@ const port = 5050;
 const path = require("path");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./model/user.js");
-const multer = require("multer");
+const DB_URL = process.env.ATLAS_URL;
 
 
 app.set("view engine", "ejs");
@@ -24,8 +25,20 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
+const store = MongoStore.create({
+    mongoUrl: DB_URL,
+    crypto: {
+        secret: "mysupersecretcode",
+    },
+    touchAfter: 24 * 60 * 60, // time in secs after which the session will end
+})
+
+store.on("error", (err) => {
+    console.log("Error in mongo session store: ", err);
+})
 
 const sessionOptions = {
+    store,
     secret: "mysupersecretcode",
     resave: false,
     saveUninitialized: true,

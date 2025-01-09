@@ -1,21 +1,27 @@
 <nav class="navbar navbar-expand-md bg-body-light sticky-top border-bottom">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" aria-current="page" href="/listings">Home</a>
-        <a class="nav-link" href="/listings/new">Add New Listing</a>
+    <div class="collapse navbar-collapse navbar-wrapper" id="navbarNavAltMarkup">
+      <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i>&nbsp;
+        <span>Wander</span><span>Lust</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="search-listing-wrapper">
+        <form action="/listings/search" method="get">
+          <input type="text" name="q" id="query" class="search-listing-input" placeholder="Search for a listing or a region">
+          <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
       </div>
-      <div class="navbar-nav ms-auto">
+      <div class="navbar-nav">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        </div>
         <% if(!currUser) { %>
-          <a class="nav-link" aria-current="page" href="/signup">SignUp</a>
-          <a class="nav-link" href="/login">LogIn</a>
-        <% } %>
-        <% if(currUser) { %>
-          <a class="nav-link" href="/logout">LogOut</a>
+          <a class="nav-link" aria-current="page" href="/signup"><b>SignUp</b></a>
+          <a class="nav-link" href="/login"><b>LogIn</b></a>
+        <% } if(currUser) { %>
+          <a class="nav-link" href="/logout"><b>LogOut</b></a>
         <% } %>
       </div>
     </div>

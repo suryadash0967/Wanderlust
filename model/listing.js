@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
-const Review = require("./review.js")
+const Review = require("./review.js");
+const DB_URL = process.env.ATLAS_URL;
 
-main().catch(err => console.log(err));
-
+main()
+    .then(() => console.log("connected to db"));
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
+    await mongoose.connect(DB_URL);
 }
 
 const listingSchema = new mongoose.Schema({
