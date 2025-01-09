@@ -7,11 +7,16 @@
   }
 
   function closeDots() {
-    const dropdown = document.querySelector(".review-delete-form");
-    const hammy = document.querySelector(".three-dots");
-    dropdown.classList.remove("show");
-    hammy.classList.remove("show");
-  }
+  const dropdown = document.querySelector(".review-delete-form");
+  const hammy = document.querySelector(".three-dots");
+  
+  dropdown.classList.remove("show");
+  hammy.classList.remove("show");
+  
+  hammy.style.pointerEvents = "none";
+  hammy.style.opacity = "0.5";
+}
+
 </script>
 
 <% layout("layouts/boilerplate") %>
@@ -163,7 +168,7 @@
                   >
                     <button
                       style="margin-right: 0.4rem; border-radius: 20px"
-                      class="btn btn-danger"
+                      class="btn btn-danger delete-review-btn"
                       onclick="closeDots()"
                     >
                       Delete

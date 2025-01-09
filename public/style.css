@@ -536,6 +536,10 @@ body {
     }
 }
 
+.three-dots {
+    cursor: pointer;
+}
+
 .three-dots span {
     display: flex;
     flex-direction: column;
