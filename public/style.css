@@ -451,6 +451,7 @@ body {
         width: 100%;
     }
 }
+
 @media (max-width: 445px) {
     .all-reviews {
         gap: 0;
@@ -462,11 +463,42 @@ body {
     }
 }
 
-.dropdown-toggle span {
-    height: 2px;
-    width: 2px;
-    border-radius: 50%;
+@media (max-width: 930px) {
+    .details-part-wrapper {
+        margin: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        gap: 1.5rem;
+    }
 }
+
+.three-dots span {
+    display: flex;
+    flex-direction: column;
+    height: 4px;
+    width: 4px;
+    margin: 3px;
+    border-radius: 50%;
+    background-color: grey;
+}
+
+.author-head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 32.7px;
+}
+
+.review-delete-form {
+    display: none;
+}
+
+.review-delete-form.show {
+    display: block;
+}
+
 
 
 
