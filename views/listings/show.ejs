@@ -13,18 +13,21 @@
                 <li><%= listing.location %>, <%= listing.country %></li>
             </ul>
         </div>
-        <div style="display: flex;">
-            <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
-                <a href="/listings/<%= listing._id %>/edit"><button class="edit-btn">Edit</button></a>
-                &nbsp;&nbsp;
-                <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
-                    <button class="delete-btn">Delete</button>
-                </form>
-                &nbsp;&nbsp;
-            <% } %>
-            <form method="get" action="/listings/">
-                <button class="back-btn">Back</button>
-            </form>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1rem;">
+            <div style="display: flex;">
+                <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
+                    <form action="/listings/<%= listing._id %>/edit" method="get"><button class="edit-btn">Edit</button></form>
+                    &nbsp;&nbsp;
+                    <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
+                        <button class="delete-btn">Delete</button>
+                    </form>
+                    &nbsp;&nbsp;
+                <% } %>
+            </div>
+            <a class="go-back-btn" href="/listings">
+                <i class="fa-solid fa-angle-left"></i>&nbsp;
+                <span>go back to home</span>
+            </a>
         </div>
         <div class="reviews-wrapper">
             <% if(currUser) { %>

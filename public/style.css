@@ -41,20 +41,20 @@ body {
     background: #555;
 }
 
-.container{
+.container {
     margin-top: 1.5rem;
     flex: 1;
     min-height: 76vh;
     width: 100% !important;
 }
 
-.all-listings-wrapper a{
+.all-listings-wrapper a {
     color: #fff;
     font-size: 14px;
     text-decoration: none;
 }
 
-.all-listings-wrapper figcaption a{
+.all-listings-wrapper figcaption a {
     text-decoration: none;
     color: #000;
 }
@@ -67,7 +67,7 @@ body {
     gap: 20px;
 }
 
-.all-listings-wrapper img{
+.all-listings-wrapper img {
     width: 100%;
     height: 230px;
     object-fit: cover;
@@ -75,7 +75,7 @@ body {
     border-radius: 12px;
 }
 
-.all-listings-wrapper button{
+.all-listings-wrapper button {
     cursor: pointer;
     border: none;
     outline: none;
@@ -86,10 +86,152 @@ body {
     text-decoration: none;
 }
 
-.navbar-wrapper{
+.container {
+    margin-top: 0.5rem !important;
+}
+
+.navbar-head {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #fff !important;
+}
+
+.navbar-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    height: 4rem;
+    padding: 0 0.5rem;
+}
+
+.navbar-wrapper .logo-icon {
+    color: #ff0000;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar-wrapper .logo-icon i {
+    font-size: 22px;
+}
+
+.navbar-wrapper .navigations {
+    margin-right: 0.5rem;
     display: flex;
     gap: 1rem;
 }
+
+.navbar-wrapper .navigations a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* Hamburger menu */
+.hammy {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hammy span {
+    width: 22px;
+    height: 3px;
+    background-color: #ff0000;
+    margin: 3px 0;
+    transition: 0.4s;
+}
+
+.dropdown-menu {
+    display: none;
+    width: 100%;
+    text-align: center;
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+    max-height: 0;
+    border: none !important;
+}
+
+.dropdown-menu a {
+    display: block;
+    margin: 1rem 0;
+    color: #000;
+    text-align: left;
+    margin-left: 2rem;
+    font-size: 17px;
+    text-decoration: none;
+    background-color: none;
+    width: fit-content;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .navbar-wrapper .navigations {
+        display: none;
+    }
+
+    .logo-icon i {
+        font-size: 27px !important;
+    }
+
+    .logo-icon span {
+        display: none;
+    }
+
+    .search-listing-input {
+        font-size: 14px;
+    }
+
+    .navigations {
+        display: none;
+    }
+
+    .hammy {
+        display: flex;
+    }
+
+    .navbar-container {
+        justify-content: space-between;
+    }
+
+    .dropdown-menu.show {
+        display: block;
+        max-height: 20rem;
+    }
+    
+    .hammy.show span:nth-of-type(1) {
+        transform: rotate(45deg) translatey(6px);
+    }
+    .hammy.show span:nth-of-type(2) {
+        display: none;
+    }
+    .hammy.show span:nth-of-type(3) {
+        transform: rotate(-45deg) translatey(-6px);
+    }
+}
+
+@media (max-width: 787px) {
+    .navbar-wrapper .navigations {
+        gap: 0.7rem;
+    }
+
+    .search-listing-input {
+        width: 80%;
+    }
+
+    .search-listing-wrapper {
+        width: 16.4rem !important;
+    }
+}
+
+
+
 
 .create-new-wrapper input,
 .create-new-wrapper textarea {
@@ -98,33 +240,6 @@ body {
     outline: none;
     padding: 10px;
     margin: 10px 0px;
-}
-
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.navbar-brand i{
-    font-size: 25px;
-    color: red;
-}
-
-.navbar-brand span{
-    font-size: 20px;
-    font-weight: 600;
-    color: red;
-}
-
-
-
-.navbar{
-    height: 5rem;
-}
-
-.nav-link{
-    color: #222 !important;
 }
 
 .footer-wrapper {
@@ -138,34 +253,49 @@ body {
     width: 100%;
     margin-top: 2rem;
 }
-.footer-left, .footer-right {
+
+.footer-left,
+.footer-right {
     display: flex;
     align-items: center;
     gap: 15px;
 }
-.footer-left a, .footer-right a {
+
+.footer-left a,
+.footer-right a {
     text-decoration: none;
     color: #555;
     font-size: 14px;
 }
+
 .footer-right a:hover {
     text-decoration: underline;
 }
-.footer-left span, .footer-right span {
+
+.footer-left span,
+.footer-right span {
     font-size: 14px;
     color: #555;
 }
+
 .footer-right .social-icons a {
     font-size: 18px;
 }
 
 
+@media (max-width: 768px) {
+    .footer-left {
+        flex-direction: column;
+    }
+}
 
-.all-listings-wrapper a{
+
+.all-listings-wrapper a {
     color: #000;
     text-decoration: none;
-    
+
 }
+
 /* Cards */
 .all-listings-wrapper .card {
     height: fit-content !important;
@@ -173,11 +303,12 @@ body {
     border: none !important;
     transition: all 0.2s ease-in-out;
 }
+
 .all-listings-wrapper .card:hover {
     transform: scale(1.1, 1.1);
 }
 
-.all-listings-wrapper .card-body{
+.all-listings-wrapper .card-body {
     border: none !important;
     display: flex;
     width: 300px;
@@ -190,7 +321,8 @@ body {
     font-size: 14px;
     font-weight: 600;
 }
-.all-listings-wrapper .card-body p{
+
+.all-listings-wrapper .card-body p {
     padding: 0;
     margin: 0;
 }
@@ -211,16 +343,16 @@ body {
     width: 100%;
 }
 
-.price-location div{
+.price-location div {
     width: 100%;
 }
 
-.price-location label{
+.price-location label {
     margin-top: .5rem;
     width: 100%;
 }
 
-.submit-button{
+.submit-button {
     background-color: black;
     color: #fff;
     padding: 10px;
@@ -247,7 +379,7 @@ body {
     border-radius: 15px;
 }
 
-.listing-details-wrapper ul{
+.listing-details-wrapper ul {
     width: 45%;
 }
 
@@ -280,6 +412,7 @@ body {
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
+
 .listing-details-wrapper .listing-desc {
     display: flex;
     align-items: center;
@@ -292,11 +425,12 @@ body {
     align-items: center;
     margin-bottom: 1rem;
 }
+
 .all-reviews-wrapper h4 {
     margin: 2rem 0 1rem 0;
 }
 
-.reviews-wrapper{
+.reviews-wrapper {
     width: 100%;
 }
 
@@ -307,14 +441,15 @@ body {
     margin-top: 2rem;
 }
 
-.reviews-wrapper input{
+.reviews-wrapper input {
     width: 30%;
 }
 
 .input-group-text {
     background-color: #fff !important;
 }
-.all-reviews .card{
+
+.all-reviews .card {
     width: 47%;
     /* margin: 20px 20px 20px 0; */
     /* margin: 20px; */
@@ -347,10 +482,11 @@ body {
     justify-content: space-between !important;
 }
 
-.search-listing-wrapper{
+.search-listing-wrapper {
     border: 1px solid rgb(196, 196, 196);
     border-radius: 25px;
     width: 22rem;
+    height: min-content;
 }
 
 .search-listing-wrapper form {
@@ -362,7 +498,7 @@ body {
     border: none;
     outline: none;
     margin: 4px 0 4px 15px;
-    background-color: transparent;    
+    background-color: transparent;
     width: 90%;
 }
 
@@ -402,9 +538,13 @@ body {
 
 .go-back-btn:hover {
     text-decoration: underline;
-    
+
 }
 
 .go-back-btn span {
     font-size: 17px;
+}
+
+.go-back-btn i {
+    font-size: 15px;
 }

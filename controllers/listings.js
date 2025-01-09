@@ -76,7 +76,7 @@ module.exports.renderShortlistedPage = async (req, res) => {
     let { q } = req.query;
 
     if (!q || q.trim() === "") {
-        req.flash("error", "Please provide a valid search query.");
+        req.flash("error", "Invalid listing or region!");
         return res.redirect("/listings");
     }
 
