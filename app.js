@@ -28,7 +28,7 @@ app.use(methodOverride("_method"));
 const store = MongoStore.create({
     mongoUrl: DB_URL,
     crypto: {
-        secret: "mysupersecretcode",
+        secret: process.env.SECRET,
     },
     touchAfter: 24 * 60 * 60, // time in secs after which the session will end
 })
@@ -39,7 +39,7 @@ store.on("error", (err) => {
 
 const sessionOptions = {
     store,
-    secret: "mysupersecretcode",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
