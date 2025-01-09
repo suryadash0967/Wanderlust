@@ -71,7 +71,19 @@
                     <% for(let review of listing.reviews) { %>
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title"><i>@<%= review.author.username %></i></h5>
+                                <div>
+                                    <h5 class="card-title"><i>@<%= review.author.username %></i></h5>
+                                    <div class="btn-group dropleft">
+                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          <span></span>
+                                          <span></span>
+                                          <span></span>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                          
+                                        </div>
+                                      </div>
+                                </div>
                                 <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
                                 <p class="card-text">"<%= review.comment %>"</p>
                             </div>

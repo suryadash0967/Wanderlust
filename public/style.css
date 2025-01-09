@@ -153,6 +153,8 @@ body {
     overflow: hidden;
     max-height: 0;
     border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .dropdown-menu a {
@@ -185,7 +187,7 @@ body {
     }
 
     .search-listing-input {
-        font-size: 14px;
+        font-size: 15px;
     }
 
     .navigations {
@@ -226,7 +228,7 @@ body {
     }
 
     .search-listing-wrapper {
-        width: 16.4rem !important;
+        width: 17.5rem !important;
     }
 }
 
@@ -426,6 +428,52 @@ body {
     margin-bottom: 1rem;
 }
 
+@media (max-width: 768px) {
+    .listing-details-wrapper .image-div img {
+        height: 240px;
+        width: 340px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .listing-desc {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .listing-desc ul{
+        width: 90%;
+    }
+}
+
+@media (max-width: 415px) {
+    .listing-desc ul{
+        width: 100%;
+    }
+}
+@media (max-width: 445px) {
+    .all-reviews {
+        gap: 0;
+        flex-direction: column;
+    }
+    .all-reviews .card,
+    .all-reviews .card-body{
+        width: 100% !important;
+    }
+}
+
+.dropdown-toggle span {
+    height: 2px;
+    width: 2px;
+    border-radius: 50%;
+}
+
+
+
+
+
+
+
 .all-reviews-wrapper h4 {
     margin: 2rem 0 1rem 0;
 }
@@ -451,8 +499,6 @@ body {
 
 .all-reviews .card {
     width: 47%;
-    /* margin: 20px 20px 20px 0; */
-    /* margin: 20px; */
 }
 
 .all-reviews {

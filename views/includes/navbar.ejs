@@ -46,11 +46,15 @@
   <div class="dropdown-menu">
     <a href="/listings/new" onclick="closeMenu()">Airbnb your home</a>
     <% if(!currUser) { %>
-      <a aria-current="page" href="/signup" onclick="closeMenu()">SignUp</a>
+      <a href="/signup" onclick="closeMenu()">SignUp</a>
       <a href="/login" onclick="closeMenu()">LogIn</a>
-    <% } if(currUser) { %>
-      <a href="/logout" onclick="closeMenu()">LogOut</a>
-    <% } %>
+      <% } if(currUser) { %>
+        <a href="/logout" onclick="closeMenu()">LogOut</a>
+      <% } %>
+      <a style="color: #ff0000; font-weight: 600; font-size: 20px;" href="/listings" onclick="closeMenu()">
+        <i class="fa-regular fa-compass"></i>&nbsp;
+        WanderLust
+      </a>
   </div>
 </nav>
 
