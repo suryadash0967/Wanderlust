@@ -1,6 +1,6 @@
 <% layout("layouts/boilerplate") %>
 <body>
-    <h2>Create New Listings</h2>
+    <h2 style="width: 100%; display: flex; justify-content: center; align-items: center;">Edit Listing</h2>
     <form action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation edit-wrapper" novalidate method="post" enctype="multipart/form-data">
         <div>
             <label for="title" class="form-label">Title</label>
@@ -34,7 +34,9 @@
             <input class="form-control" name="listing[country]" type="text" value="<%= listing.country %>" required><br>
             <div class="invalid-feedback">Country name should be valid!</div>
         </div>
-        <button class="submit-button" style="background-color: red;">Submit</button>
+        <div class="submit-btn-wrapper">
+            <button class="submit-button" style="background-color: red;">Submit</button>
+        </div>
 
     </form>
 </body>

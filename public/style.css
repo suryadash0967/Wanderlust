@@ -113,6 +113,7 @@ body {
     font-size: 20px;
     text-decoration: none;
     font-weight: 600;
+    margin-left: 5px;
 }
 
 .navbar-wrapper .logo-icon i {
@@ -412,6 +413,9 @@ body {
     outline: none;
     border: none;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -495,6 +499,12 @@ body {
     .listing-details-wrapper .image-div img {
         height: 240px;
         width: 340px;
+    }
+    .submit-btn-wrapper {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
