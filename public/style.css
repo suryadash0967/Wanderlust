@@ -96,6 +96,7 @@ body {
     top: 0;
     z-index: 1000;
     background-color: #fff !important;
+    margin-bottom: 2rem;
 }
 
 .navbar-wrapper {
@@ -106,7 +107,6 @@ body {
     height: 4rem;
     padding: 0 0.6rem;
     box-shadow: 0 1px 10px #000;
-    margin-bottom: 2rem;
 }
 
 .navbar-wrapper .logo-icon {
